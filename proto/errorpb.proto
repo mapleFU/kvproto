@@ -5,6 +5,7 @@ import "metapb.proto";
 import "gogoproto/gogo.proto";
 import "rustproto.proto";
 
+
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
 option (gogoproto.unmarshaler_all) = true;
@@ -62,4 +63,6 @@ message Error {
     StaleCommand stale_command = 7;
     StoreNotMatch store_not_match = 8;
     RaftEntryTooLarge raft_entry_too_large = 9;
+
+    metapb.KeyRange range = 10;
 }

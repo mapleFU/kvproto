@@ -5,6 +5,8 @@ import "errorpb.proto";
 import "kvrpcpb.proto";
 import "gogoproto/gogo.proto";
 import "rustproto.proto";
+import "metapb.proto";
+
 
 option (gogoproto.marshaler_all) = true;
 option (gogoproto.sizer_all) = true;
@@ -14,17 +16,11 @@ option (rustproto.lite_runtime_all) = true;
 option java_package = "org.tikv.kvproto";
 
 
-// [start, end)
-message KeyRange {
-    bytes start = 1;
-    bytes end = 2;
-}
-
 message Request {
     kvrpcpb.Context context = 1;
     int64 tp = 2;
     bytes data = 3;
-    repeated KeyRange ranges = 4;
+    repeated metapb.KeyRange ranges = 4;
 }
 
 message Response {
@@ -32,6 +28,6 @@ message Response {
     errorpb.Error region_error = 2;
     kvrpcpb.LockInfo locked = 3;
     string other_error = 4;
-    KeyRange range = 5;
+    metapb.KeyRange range = 5;
     kvrpcpb.ExecDetails exec_details = 6;
 }
